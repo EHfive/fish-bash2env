@@ -2,6 +2,12 @@
 
 Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./functions/__bash2env.sh)) and fish.
 
+## Requirements
+
+* fish
+* bash
+* coreutils (env, printenv)
+
 ## Usage
 
 ```fish
@@ -34,4 +40,4 @@ This scripts would consumes roughly 22 more milliseconds to source my `/etc/prof
 | [babelfish](https://github.com/bouk/babelfish)                  | Can't transpile some builtin commands (e.g. `read`)    |
 
 ## TODO
-* Diff old & new environment variables (or just use `env -i` ?)
+* Diff old & new environment variables to minimize environment variables reload.
