@@ -15,7 +15,7 @@ $ bash2env source /etc/profile
 
 ## Performance
 
-Time by sourcing /etc/profile on my personal Arch Linux desktop setup.
+Time by sourcing `/etc/profile` on my personal Arch Linux desktop setup.
 
 | Test                                    | Time             |
 | --------------------------------------- | ---------------- |
@@ -32,3 +32,6 @@ This scripts would consumes roughly 22 more milliseconds to source my `/etc/prof
 | [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) | No multi-line env value support                        |
 | [bass](https://github.com/edc/bass)                             | Uses python, which is heavy and overkill for this task |
 | [babelfish](https://github.com/bouk/babelfish)                  | Can't transpile some builtin commands (e.g. `read`)    |
+
+## TODO
+* Diff old & new environment variables (or just use `env -i` ?)
