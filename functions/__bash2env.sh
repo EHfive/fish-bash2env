@@ -25,14 +25,14 @@ fish_escape() {
 }
 
 read_old_env() {
-    env -0 | while IFS= read -ers -d $'\0' line; do
+    env -0 | while IFS= read -rs -d $'\0' line; do
         echo -n " $line"
     done
 }
 
 old_env=" $(read_old_env) "
 
-eval "$*" || true
+eval "$*" 1>&2 || true
 
 env -0 | while IFS= read -rs -d $'\0' line; do
     if [[ "${old_env}" =~ " ${line} " ]]; then
