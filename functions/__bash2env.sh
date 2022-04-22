@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2076
 set -e
 
-eval "$*" || true
-
-readonly_vars=(
+disallowd_vars_arr=(
     _
     fish_kill_signal
     fish_killring
@@ -17,6 +16,7 @@ readonly_vars=(
     status_generation
     version
 )
+disallowd_vars=" ${disallowd_vars_arr[*]} "
 
 fish_escape() {
     value="${1//\\/\\\\}"
@@ -24,9 +24,23 @@ fish_escape() {
     echo "'${value}'"
 }
 
-printenv -0 | while IFS= read -r -d $'\0' line; do
-    name=${line%%=*}
-    if [[ " ${readonly_vars[*]} " =~ ^.*\ ${name}\ .*$ ]]; then
+read_old_env() {
+    env -0 | while IFS= read -ers -d $'\0' line; do
+        echo -n " $line"
+    done
+}
+
+old_env=" $(read_old_env) "
+
+eval "$*" || true
+
+env -0 | while IFS= read -rs -d $'\0' line; do
+    if [[ "${old_env}" =~ " ${line} " ]]; then
+        continue
+    fi
+
+    name="${line%%=*}"
+    if [[ "${disallowd_vars}" =~ " ${name} " ]]; then
         continue
     fi
 
