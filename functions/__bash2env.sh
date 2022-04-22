@@ -24,13 +24,7 @@ fish_escape() {
     echo "'${value}'"
 }
 
-read_old_env() {
-    env -0 | while IFS= read -rs -d $'\0' line; do
-        echo -n " $line"
-    done
-}
-
-old_env=" $(read_old_env) "
+old_env=" $(env -0 | tr '\0' ' ') "
 
 eval "$*" 1>&2 || true
 

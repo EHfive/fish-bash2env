@@ -6,7 +6,7 @@ Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./f
 
 -   fish
 -   bash
--   coreutils (`env -0`)
+-   coreutils (`env -0`, `tr`)
 
 ## Install
 
