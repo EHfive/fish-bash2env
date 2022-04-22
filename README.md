@@ -8,18 +8,38 @@ Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./f
 -   bash
 -   coreutils (`env -0`)
 
+## Install
+
+#### fisher
+
+```
+$ fisher install EHfive/fish-bash2env
+$ fisher remove EHfive/fish-bash2env
+```
+
+#### Makefile
+
+```
+$ make install
+$ make uninstall
+```
+
+### `fish_function_path`
+
+```
+$ set function_path /path/to/fish-bash2env/functions
+$ set fish_function_path $fish_function_path $function_path
+```
+
 ## Usage
 
 ```fish
-$ set function_path /path/to/fish-bash2env/functions
-$ set fish_function_path $fish_function_path $function_path
-$ # or copy/link files in ./functions into one of $fish_function_path (e.g. /etc/fish/functions)
 $ bash2env source /etc/profile
 $ bash2env export x=123
 $ echo $x
 123
 $ # bash2env is just a wrapper that sources outputs of __bash2env.sh
-$ bash $function_path/__bash2env.sh export x=123
+$ bash /path/to/fish-bash2env/functions/__bash2env.sh  export x=123
 set -gx x '123'
 ```
 
@@ -36,8 +56,8 @@ Time by sourcing `/etc/profile` on my personal Arch Linux desktop setup.
 
 ## Alternatives
 
-| Name                                                            | Note                                                   |
-| --------------------------------------------------------------- | ------------------------------------------------------ |
-| [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) | No multi-line env value support                        |
-| [bass](https://github.com/edc/bass)                             | Uses python, which is heavy and overkill for this task |
-| [babelfish](https://github.com/bouk/babelfish)                  | Can't transpile some builtin commands (e.g. `read`)    |
+| Name                                                            | Note                                                                   |
+| --------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) | No multi-line env value support                                        |
+| [bass](https://github.com/edc/bass)                             | Supports alias; Uses python, which is heavy and overkill for this task |
+| [babelfish](https://github.com/bouk/babelfish)                  | Can't transpile some builtin commands (e.g. `read`)                    |
