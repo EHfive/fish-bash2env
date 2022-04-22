@@ -26,7 +26,8 @@ fish_escape() {
 
 old_env=" $(env -0 | tr '\0' ' ') "
 
-eval "$*" 1>&2 || true
+eval_status=
+eval "$*" 1>&2 || eval_status=$?
 
 env -0 | while IFS= read -rs -d $'\0' line; do
     if [[ "${old_env}" =~ " ${line} " ]]; then
@@ -41,3 +42,5 @@ env -0 | while IFS= read -rs -d $'\0' line; do
     value=$(fish_escape "${line#*=}")
     echo "set -gx ${name} ${value}"
 done
+
+exit $eval_status
