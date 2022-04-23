@@ -8,30 +8,9 @@ Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./f
 -   bash
 -   coreutils (`env -0`, `tr`)
 
-## Install
-
-#### fisher
-
-```
-$ fisher install EHfive/fish-bash2env
-$ fisher remove EHfive/fish-bash2env
-```
-
-#### Makefile
-
-```
-$ make install
-$ make uninstall
-```
-
-### `fish_function_path`
-
-```
-$ set function_path /path/to/fish-bash2env/functions
-$ set fish_function_path $fish_function_path $function_path
-```
-
 ## Usage
+
+**bash2env** _\<bash command\>_
 
 ```fish
 $ bash2env source /etc/profile
@@ -42,6 +21,42 @@ $ # bash2env is just a wrapper that sources outputs of __bash2env.sh
 $ bash /path/to/fish-bash2env/functions/__bash2env.sh  export x=123
 set -gx x '123'
 ```
+
+<details>
+<summary>Demo</summary>
+
+[![asciicast](https://asciinema.org/a/489496.svg)](https://asciinema.org/a/489496)
+
+</details>
+
+## Install
+
+#### Makefile
+
+```
+$ make install
+$ make uninstall
+```
+
+#### [fisher](https://github.com/jorgebucaran/fisher)
+
+```
+$ fisher install EHfive/fish-bash2env
+$ fisher remove EHfive/fish-bash2env
+```
+
+#### [fish_function_path](https://fishshell.com/docs/current/language.html#autoloading-functions)
+
+```
+$ set function_path /path/to/fish-bash2env/functions
+$ set fish_function_path $fish_function_path $function_path
+```
+
+### Packages
+
+| Distribution | Repo | Package                                                           |
+| ------------ | ---- | ----------------------------------------------------------------- |
+| Arch Linux   | AUR  | [fish-bash2env](https://aur.archlinux.org/packages/fish-bash2env) |
 
 ## Performance
 
