@@ -32,7 +32,12 @@ function bash2env -d "Import environment variables modified by given bash comman
     end
 
     set -l DIR (dirname (status -f))
-    __FISH_BASH2ENV_IMPURE=$_flag_impure \
-        command bash $bash_flags $DIR/__bash2env.sh $argv | source
-    return $status
+    __FISH_BASH2ENV_IMPURE=$_flag_impure command \
+        bash $bash_flags $DIR/__bash2env.sh $argv | source
+
+    for code in $pipestatus
+        if test $code != 0
+            return $code
+        end
+    end
 end

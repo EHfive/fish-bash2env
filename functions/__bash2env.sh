@@ -29,7 +29,6 @@ fish_escape() {
     echo "'${value}'"
 }
 
-
 flag_impure="$__FISH_BASH2ENV_IMPURE"
 unset __FISH_BASH2ENV_IMPURE
 
