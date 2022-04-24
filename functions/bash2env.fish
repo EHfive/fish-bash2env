@@ -1,3 +1,8 @@
+# Copyright (c) 2022 Huang-Huang Bao
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
 function bash2env -d "Source environment variables modified by given bash command"
     if test (count $argv) -eq 0
         echo 'Usage:' \

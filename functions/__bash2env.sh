@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+# Copyright (c) 2022 Huang-Huang Bao
+#
+# This software is released under the MIT License.
+# https://opensource.org/licenses/MIT
+
 # shellcheck disable=SC2076
 set -e
 
