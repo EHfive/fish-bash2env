@@ -29,13 +29,19 @@ fish_escape() {
     echo "'${value}'"
 }
 
-old_env=" $(env -0 | tr '\0' ' ') "
+
+flag_impure="$__FISH_BASH2ENV_IMPURE"
+unset __FISH_BASH2ENV_IMPURE
+
+if [[ -z "$flag_impure" ]]; then
+    old_env=" $(env -0 | tr '\0' ' ') "
+fi
 
 eval_status=
 eval "$*" 1>&2 || eval_status=$?
 
 env -0 | while IFS= read -rs -d $'\0' line; do
-    if [[ "${old_env}" =~ " ${line} " ]]; then
+    if [[ -z "$flag_impure" && "${old_env}" =~ " ${line} " ]]; then
         continue
     fi
 
@@ -44,7 +50,7 @@ env -0 | while IFS= read -rs -d $'\0' line; do
         continue
     fi
 
-    value=$(fish_escape "${line#*=}")
+    value="$(fish_escape "${line#*=}")"
     echo "set -gx ${name} ${value}"
 done
 

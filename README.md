@@ -1,6 +1,6 @@
 # fish-bash2env
 
-Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./functions/__bash2env.sh)) and fish.
+A lightweight fish plugin to import environment variables modified by given bash command/script, implemented purely in bash ([\_\_bash2env.sh](./functions/__bash2env.sh)) and fish.
 
 ## Requirements
 
@@ -10,7 +10,11 @@ Source bash env in fish shell, implemented purely in bash ([\_\_bash2env.sh](./f
 
 ## Usage
 
-**bash2env** _\<bash command\>_
+([Install](#install) the plugin first to use the `bash2env` function)
+
+**bash2env** [_-i/--impure_] _\<bash command\>_
+
+-   -i, --impure: By default bash2env runs given bash command with `--norc` flag (see bash(1)) and imports only changed environment variables, `--impure` flag disables this behavior.
 
 ```fish
 $ bash2env source /etc/profile
@@ -18,7 +22,7 @@ $ bash2env export x=123
 $ echo $x
 123
 $ # bash2env is just a wrapper that sources outputs of __bash2env.sh
-$ bash /path/to/fish-bash2env/functions/__bash2env.sh  export x=123
+$ bash /path/to/__bash2env.sh  export x=123
 set -gx x '123'
 ```
 
@@ -34,8 +38,10 @@ set -gx x '123'
 #### Makefile
 
 ```
-$ make install
-$ make uninstall
+$ make FISH_FUNCTION_DIR=~/.config/fish/functions install
+$ # or install globally
+$ sudo make install
+$ sudo make uninstall
 ```
 
 #### [fisher](https://github.com/jorgebucaran/fisher)
@@ -48,7 +54,7 @@ $ fisher remove EHfive/fish-bash2env
 #### [fish_function_path](https://fishshell.com/docs/current/language.html#autoloading-functions)
 
 ```
-$ set function_path /path/to/fish-bash2env/functions
+$ set -l function_path /path/to/fish-bash2env/functions
 $ set fish_function_path $fish_function_path $function_path
 ```
 
@@ -73,6 +79,6 @@ Time by sourcing `/etc/profile` on my personal Arch Linux desktop setup.
 
 | Name                                                            | Note                                                                   |
 | --------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) | No multi-line env value support                                        |
+| [foreign-env](https://github.com/oh-my-fish/plugin-foreign-env) | No multiline env value support                                         |
 | [bass](https://github.com/edc/bass)                             | Supports alias; Uses python, which is heavy and overkill for this task |
 | [babelfish](https://github.com/bouk/babelfish)                  | Can't transpile some builtin commands (e.g. `read`)                    |

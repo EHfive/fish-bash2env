@@ -8,9 +8,8 @@ FISH_FUNCTION_DIR ?= $(DESTDIR)/usr/share/fish/vendor_functions.d
 all:
 
 install:
-	$(INSTALL) -d $(FISH_FUNCTION_DIR)
-	$(INSTALL_DATA) -D functions/__bash2env.sh $(FISH_FUNCTION_DIR)
-	$(INSTALL_DATA) -D functions/bash2env.fish $(FISH_FUNCTION_DIR)
+	$(INSTALL_DATA) -Dt $(FISH_FUNCTION_DIR) functions/__bash2env.sh
+	$(INSTALL_DATA) -Dt $(FISH_FUNCTION_DIR) functions/bash2env.fish
 
 uninstall:
 	$(RM) $(FISH_FUNCTION_DIR)/__bash2env.sh
