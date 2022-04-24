@@ -33,6 +33,34 @@ set -gx x '123'
 
 </details>
 
+<details>
+<summary>Setting fish as default shell(login shell)</summary>
+
+Check if fish is installed:
+
+```
+$ chsh -l | grep fish
+```
+
+Change default shell to fish (the path of fish binary might differ):
+
+```
+$ chsh -s /bin/fish
+```
+
+Source `/etc/profile` with `bash2env` in your fish config, this ensures `PATH` and other important environment variables been added to your environment.
+
+```fish
+# ~/.config/fish/config.fish or /etc/fish/config.fish
+if status is-login
+    bash2env source /etc/profile
+end
+
+# ...
+```
+
+</details>
+
 ## Install
 
 #### Makefile
