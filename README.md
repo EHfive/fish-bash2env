@@ -14,7 +14,7 @@ A lightweight fish plugin to import environment variables modified by given bash
 
 **bash2env** [_-i/--impure_] _\<bash command\>_
 
--   -i, --impure: By default bash2env runs given bash command with `--norc` flag (see bash(1)) and imports only changed environment variables, `--impure` flag disables this behavior.
+-   -i, --impure: By default bash2env imports only changed environment variables, `--impure` flag disables this behavior.
 
 ```fish
 $ bash2env source /etc/profile

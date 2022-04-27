@@ -23,17 +23,13 @@ function bash2env -d "Import environment variables modified by given bash comman
         return 22
     end
 
-    set -l bash_flags
-
     if test -n "$_flag_impure"
         set _flag_impure 1
-    else
-        set bash_flags $bash_flags --norc
     end
 
     set -l DIR (dirname (status -f))
     __FISH_BASH2ENV_IMPURE=$_flag_impure command \
-        bash $bash_flags $DIR/__bash2env.sh $argv | source
+        bash $DIR/__bash2env.sh $argv | source
 
     for code in $pipestatus
         if test $code != 0
